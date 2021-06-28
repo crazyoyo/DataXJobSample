@@ -1,0 +1,40 @@
+{
+  "core": {
+    "transport": {
+      "channel": {
+        "speed": {
+          "channel": 100
+        }
+      }
+    }
+  },
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 1000
+      }
+    },
+    "content": [
+      {
+        "reader": {
+                    "name": "hbase20xsqlreader",
+                    "parameter": {
+                        "queryServerAddress": "http://172.31.20.1:8765",
+                        "serialization": "PROTOBUF",
+			"table": "T_TEST",
+                        "column": ["ID", "NAME", "AGE"],
+                        "splitKey": "ID"
+                    }
+                },
+        "writer": {
+          "name": "txtfilewriter",
+          "parameter": {
+            "path": "/home/ec2-user/testdatas",
+            "fileName": "test-hbase",
+            "writeMode": "truncate"
+          }
+        }
+      }
+    ]
+  }
+}

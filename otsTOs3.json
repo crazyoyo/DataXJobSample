@@ -1,0 +1,70 @@
+{
+  "core": {
+    "transport": {
+      "channel": {
+        "speed": {
+		"channel":10
+        }
+      }
+    }
+  },
+  "job": {
+    "setting": {
+      "speed": {
+	      "channel":5
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "otsreader",
+          "parameter": {
+	    "endpoint":"http://xxxxxxxxxxxxx.cn-hangzhou.ots.aliyuncs.com",
+            "accessId":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "accessKey":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "instanceName":"OTS",
+            "table":"People",
+            "column": [
+                            {"name":"first"},
+                            {"name":"last"},
+                            {"name":"age"},
+                            {"name":"street"},
+                            {"name":"city"},
+                            {"name":"state"},
+                            {"name":"zip"},
+                            {"name":"digid"},
+                            {"name":"date"},
+                            {"name":"latitude"},
+                            {"name":"longitude"},
+                            {"name":"color"},
+                            {"name":"passwd"}
+            ],
+            "range":{
+            	"begin":[
+                            {"type":"INF_MIN"}
+                        ],
+                "end":  [
+                            {"type":"INF_MAX"}
+                        ]
+            }
+          }
+        },
+
+	       "writer": {
+                    "name": "s3writer",
+                    "parameter": {
+                        "endpoint": "s3.ap-southeast-1.amazonaws.com",
+                        "region": "ap-southeast-1",
+                        "accessId": "xxxxxxxxxxxxxxxxxxxxxxxxxx",
+                        "accessKey": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                        "bucket": "test",
+                        "object": "datax/test",
+                        "encoding": "UTF-8",
+                        "fieldDelimiter": ",",
+                        "writeMode": "truncate"
+                    }
+                }
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "core": {
+    "transport": {
+      "channel": {
+        "speed": {
+		      "channel":10
+        }
+      }
+    }
+  },
+  "job": {
+    "setting": {
+      "speed": {
+	      "channel":1
+      }
+    },
+    "content": [
+      {
+          "reader": {
+              "name": "mysqlreader",
+              "parameter": {
+                  "username": "admin",
+                  "password": "Shmily345",
+                  "column" : [ "emp_no","birth_date","first_name","last_name","gender","hire_date" ],
+                  "splitPk": "emp_no",
+                  "connection": [
+                      {
+                          "querySql": [ 
+				  "select * from employees where emp_no > ${MAX_ID}"
+			  ],
+                          "jdbcUrl": [ "jdbc:mysql://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.rds.amazonaws.com:3306/employees" ]
+                      }
+                  ]
+              }
+          },
+
+	       "writer": {
+                    "name": "s3writer",
+                    "parameter": {
+                        "endpoint": "s3.us-west-2.amazonaws.com",
+                        "region": "us-west-2",
+                        "accessId": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                        "accessKey": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                        "bucket": "test",
+                        "object": "datax/test",
+                        "encoding": "UTF-8",
+                        "fieldDelimiter": ",",
+                        "writeMode": "append"
+                    }
+                }
+      }
+    ]
+  }
+}

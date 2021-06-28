@@ -1,0 +1,105 @@
+{
+  "core": {
+    "transport": {
+      "channel": {
+        "speed": {
+          "channel": 100
+        }
+      }
+    }
+  },
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 1000
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "s3reader",
+          "parameter": {
+	    "endpoint": "s3.ap-southeast-1.amazonaws.com",
+	    "region": "ap-southeast-1",
+            "accessId": "xxxxxxxxxxxxxxxxxxxxxxxxx",
+            "accessKey": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "bucket": "test",
+            "object": [
+                    "out.csv"
+            ],
+            "column": [
+              {
+                "index": 0,
+                "type": "string"
+              },
+              {
+                "index": 1,
+                "type": "string"
+              },
+              {
+                "index": 2,
+                "type": "string"
+              },
+              {
+                "index": 3,
+                "type": "long"
+              },
+              {
+                "index": 4,
+                "type": "string"
+              },
+              {
+                "index": 5,
+                "type": "string"
+              },
+              {
+                "index": 6,
+                "type": "string"
+              },
+              {
+                "index": 7,
+                "type": "long"
+              },
+              {
+                "index": 8,
+                "type": "string"
+              },
+              {
+                "index": 9,
+                "type": "date",
+                "format": "yyyy/MM/dd"
+              },
+              {
+                "index": 10,
+                "type": "double"
+              },
+              {
+                "index": 11,
+                "type": "double"
+              },
+              {
+                "index": 12,
+                "type": "string"
+              },
+              {
+                "index": 13,
+                "type": "string"
+              }
+            ],
+            "fieldDelimiter": ","
+          }
+        },
+
+        "writer": {
+          "name": "txtfilewriter",
+          "parameter": {
+            "path": "/tmp/",
+            "fileName": "test",
+            "writeMode": "truncate",
+            "dateFormat": "yyyy/MM/dd"
+          }
+        }
+      }
+    ]
+  }
+}

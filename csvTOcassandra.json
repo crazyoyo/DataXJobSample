@@ -1,0 +1,124 @@
+{
+  "core": {
+    "transport": {
+      "channel": {
+        "speed": {
+	  "channel":10,
+          "record":2000
+        }
+      }
+    }
+  },
+  "job": {
+    "setting": {
+      "speed": {
+	"channel":10,
+        "record": 2000
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "/home/ec2-user/csv-test-data-generator/out.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              {
+                "index": 0,
+                "type": "string"
+              },
+              {
+                "index": 1,
+                "type": "string"
+              },
+              {
+                "index": 2,
+                "type": "string"
+              },
+              {
+                "index": 3,
+                "type": "long"
+              },
+              {
+                "index": 4,
+                "type": "string"
+              },
+              {
+                "index": 5,
+                "type": "string"
+              },
+              {
+                "index": 6,
+                "type": "string"
+              },
+              {
+                "index": 7,
+                "type": "long"
+              },
+              {
+                "index": 8,
+                "type": "string"
+              },
+              {
+                "index": 9,
+                "type": "date",
+                "format": "yyyy/MM/dd"
+              },
+              {
+                "index": 10,
+                "type": "double"
+              },
+              {
+                "index": 11,
+                "type": "double"
+              },
+              {
+                "index": 12,
+                "type": "string"
+              },
+              {
+                "index": 13,
+                "type": "string"
+              }
+            ],
+            "fieldDelimiter": ","
+          }
+        },
+        "writer": {
+          "name": "cassandrawriter",
+          "parameter": {
+            "username": "admin-at-xxxxxxxxxxxx",
+            "password": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "host": "cassandra.ap-southeast-1.amazonaws.com",
+            "port": 9142,
+            "useSSL": true,
+            "keyspace": "tutorialkeyspace",
+            "table": "testtable",
+            "batchSize": 20,
+            "asyncWrite": true,
+            "column": [
+              "email",
+              "first",
+              "last",
+              "age",
+              "street",
+              "city",
+              "state",
+              "zip",
+              "digid",
+              "date",
+              "latitude",
+              "longitude",
+              "color",
+              "passwd"
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
+

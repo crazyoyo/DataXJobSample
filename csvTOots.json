@@ -1,0 +1,129 @@
+{
+  "core": {
+    "transport": {
+      "channel": {
+        "speed": {
+	  "channel":10,
+          "record":10000
+        }
+      }
+    }
+  },
+  "job": {
+    "setting": {
+      "speed": {
+	"channel":100,
+        "record": 100000
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "txtfilereader",
+          "parameter": {
+            "path": [
+              "/home/ec2-user/csv-test-data-generator/out.csv"
+            ],
+            "encoding": "UTF-8",
+            "column": [
+              {
+                "index": 0,
+                "type": "string"
+              },
+              {
+                "index": 1,
+                "type": "string"
+              },
+              {
+                "index": 2,
+                "type": "string"
+              },
+              {
+                "index": 3,
+                "type": "long"
+              },
+              {
+                "index": 4,
+                "type": "string"
+              },
+              {
+                "index": 5,
+                "type": "string"
+              },
+              {
+                "index": 6,
+                "type": "string"
+              },
+              {
+                "index": 7,
+                "type": "long"
+              },
+              {
+                "index": 8,
+                "type": "string"
+              },
+              {
+                "index": 9,
+                "type": "date",
+                "format": "yyyy/MM/dd"
+              },
+              {
+                "index": 10,
+                "type": "double"
+              },
+              {
+                "index": 11,
+                "type": "double"
+              },
+              {
+                "index": 12,
+                "type": "string"
+              },
+              {
+                "index": 13,
+                "type": "string"
+              }
+            ],
+            "fieldDelimiter": ","
+          }
+        },
+	
+	"writer": {
+                    "name": "otswriter",
+                    "parameter": {
+                        "endpoint":"http://xxxxxxxxxxxx.cn-hangzhou.ots.aliyuncs.com",
+                        "accessId":"xxxxxxxxxxxxxxxxxxxxxxxx",
+                        "accessKey":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                        "instanceName":"OTS",
+                        "table":"People",
+                        "requestTotalSizeLimitation": 1048576,
+                        "attributeColumnSizeLimitation": 2097152,
+                        "primaryKeyColumnSizeLimitation": 1024,
+                        "attributeColumnMaxCount": 1024, 
+                        "primaryKey":[
+                            {"name":"email", "type":"string"}
+                        ],
+                        "column":[
+                            {"name":"first","type":"string"},
+                            {"name":"last","type":"string"},
+                            {"name":"age","type":"int"},
+                            {"name":"street","type":"string"},
+                            {"name":"city","type":"string"},
+                            {"name":"state","type":"string"},
+                            {"name":"zip","type":"double"},
+                            {"name":"digid","type":"string"},
+                            {"name":"date","type":"string"},
+                            {"name":"latitude","type":"double"},
+                            {"name":"longitude","type":"double"},
+                            {"name":"color","type":"string"},
+                            {"name":"passwd","type":"string"}
+                        ],
+                        "writeMode":"UpdateRow"
+                    }
+                }
+
+      }
+    ]
+  }
+}
+

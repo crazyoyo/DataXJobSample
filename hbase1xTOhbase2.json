@@ -1,0 +1,82 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 1
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "hbase11xreader",
+          "parameter": {
+            "hbaseConfig": {
+              "hbase.zookeeper.quorum": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:2181"
+            },
+            "table": "PEOPLE",
+            "encoding": "utf-8",
+            "mode": "normal",
+            "column": [
+              {
+                "name": "rowkey",
+                "type": "string"
+              },
+              {
+                "name": "BASIC_INFO: NAME",
+                "type": "string"
+              },
+              {
+                "name": "BASIC_INFO: AGE",
+                "type": "string"
+              },
+              {
+                "name": "BASIC_INFO: SEX",
+                "type": "string"
+              },
+              {
+                "name": "OTHER_INFO: EDU",
+                "type": "string"
+              },
+              {
+                "name": "OTHER_INFO: TEL",
+                "type": "string"
+              },
+              {
+                "name": "OTHER_INFO: EMAIL",
+                "type": "string"
+              },
+              {
+                "name": "OTHER_INFO: COUNTRY",
+                "type": "string"
+              }
+            ],
+            "range": {
+              "startRowkey": "",
+              "endRowkey": "",
+              "isBinaryRowkey": true
+            }
+          }
+        },
+        "writer": {
+          "name": "hbase20xsqlwriter",
+          "parameter": {
+            "batchSize": "100",
+            "column": [
+              "ID",
+              "NAME",
+              "AGE",
+              "SEX",
+              "EDU",
+              "TEL",
+              "EMAIL",
+              "COUNTRY"
+            ],
+            "queryServerAddress": "http://172.31.35.109:8765",
+            "nullMode": "skip",
+            "table": "PEOPLE"
+          }
+        }
+      }
+    ]
+  }
+}
